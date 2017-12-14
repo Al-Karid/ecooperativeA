@@ -31,5 +31,13 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(I);
             }
         });
+        Button btnHist = (Button)findViewById(R.id.btnHist);
+        btnHist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent I = new Intent(DashboardActivity.this, ListeDesProduitsActivity.class);
+                startActivity(I);
+            }
+        });
     }
 }
