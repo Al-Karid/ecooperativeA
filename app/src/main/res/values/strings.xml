@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ecooperative</string>
+    <string name="dashBtnAss">Assignations</string>
+    <string name="dashBtnBuy">Acheter</string>
+    <string name="dashBtnList">Liste</string>
+    <string name="dashBtnHist">Historique</string>
+</resources>
