@@ -4,51 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/loginbg"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingTop="100dp"
+    android:paddingTop="50dp"
     android:weightSum="1"
     tools:context="com.example.grenciss.ecooperative.LoginActivity">
 
     <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
+        android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ECCOPERATIVE"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="40sp" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="first_attempt.json"
+            app:lottie_loop="false" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:orientation="vertical"
         android:layout_weight="0.24"
+        android:orientation="vertical"
         android:weightSum="1">
 
         <EditText
             android:id="@+id/editText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/inputbg"
             android:ems="10"
+            android:hint="email"
             android:inputType="textPersonName"
+            android:textAlignment="center"
             android:textColor="@android:color/background_light" />
 
         <EditText
             android:id="@+id/editText2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/inputbg"
             android:ems="10"
+            android:hint="mot de passe"
             android:inputType="textPassword"
+            android:textAlignment="center"
             android:textColor="@android:color/background_light" />
 
         <Button

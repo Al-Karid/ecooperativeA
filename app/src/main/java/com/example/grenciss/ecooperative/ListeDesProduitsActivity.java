@@ -48,7 +48,7 @@ public class ListeDesProduitsActivity extends AppCompatActivity {
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
             // Making a request to url and getting response
-            String url = "http://6ff585ed.ngrok.io/produits";
+            String url = "http://9118fc59.ngrok.io/api/produits";
             String jsonStr = sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: " + jsonStr);
