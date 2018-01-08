@@ -66,7 +66,7 @@ public class AssignationAdapter extends RecyclerView.Adapter<AssignationAdapter.
                 @SuppressLint("ResourceType")
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(view.getContext(),String.valueOf(getAdapterPosition()),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(),String.valueOf(assignationList.get(getAdapterPosition()).tel),Toast.LENGTH_SHORT).show();
                 }
             });
         }

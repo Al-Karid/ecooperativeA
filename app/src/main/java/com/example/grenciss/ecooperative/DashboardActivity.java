@@ -22,7 +22,7 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 //        setContentView(R.layout.assignation_item);
         getSupportActionBar().setElevation(0);
-        getSupportActionBar().setTitle("Dashboard");
+        getSupportActionBar().setTitle("Assignations");
 
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.cardList);
         recyclerView.setHasFixedSize(true);
