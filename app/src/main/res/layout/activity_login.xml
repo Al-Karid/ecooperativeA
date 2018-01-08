@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loginbg"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingTop="50dp"
@@ -13,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="220dp"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:gravity="center"
@@ -42,7 +41,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/inputbg"
             android:ems="10"
             android:hint="email"
             android:inputType="textPersonName"
@@ -54,7 +52,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/inputbg"
             android:ems="10"
             android:hint="mot de passe"
             android:inputType="textPassword"
