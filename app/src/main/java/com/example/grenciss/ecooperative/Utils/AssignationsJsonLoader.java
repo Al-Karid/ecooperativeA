@@ -98,7 +98,7 @@ public class AssignationsJsonLoader extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
-        AssignationAdapter assignationAdapter = new AssignationAdapter(this.assignations);
+        AssignationAdapter assignationAdapter = new AssignationAdapter(this.context,this.assignations);
         this.recyclerView.setAdapter(assignationAdapter);
     }
 }
