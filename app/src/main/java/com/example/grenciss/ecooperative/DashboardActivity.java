@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.example.grenciss.ecooperative.Adapters.Assignation;
 import com.example.grenciss.ecooperative.Adapters.AssignationAdapter;
+import com.example.grenciss.ecooperative.Utils.AssignationsJsonLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,33 +31,7 @@ public class DashboardActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        AssignationAdapter assignationAdapter = new AssignationAdapter(this.getAssignations(10));
-        recyclerView.setAdapter(assignationAdapter);
-
-        /*Button btnAss = findViewById(R.id.btnAss);
-        btnAss.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent I = new Intent(DashboardActivity.this, AssignationsActivity.class);
-                startActivity(I);
-            }
-        });
-        Button btnAcheter = (Button)findViewById(R.id.btnAcheter);
-        btnAcheter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent I = new Intent(DashboardActivity.this, AcheterActivity.class);
-                startActivity(I);
-            }
-        });
-        Button btnHist = (Button)findViewById(R.id.btnHist);
-        btnHist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent I = new Intent(DashboardActivity.this, ListeDesProduitsActivity.class);
-                startActivity(I);
-            }
-        });*/
+        new AssignationsJsonLoader(this,recyclerView).execute();
     }
 
     public List<Assignation> getAssignations(int n)
