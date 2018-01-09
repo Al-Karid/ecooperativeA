@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.grenciss.ecooperative.AcheterActivity;
 import com.example.grenciss.ecooperative.R;
+import com.example.grenciss.ecooperative.Utils.GlobalHelper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -83,7 +84,7 @@ public class AssignationAdapter extends RecyclerView.Adapter<AssignationAdapter.
                 }
             });
 
-            if (this.isConnected())
+            if (new GlobalHelper(context).isConnected())
             {
                 btnBuy.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -107,7 +108,7 @@ public class AssignationAdapter extends RecyclerView.Adapter<AssignationAdapter.
             }
         }
 
-        public boolean isConnected()
+        /*public boolean isConnected()
         {
             ConnectivityManager check = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo[] info = check.getAllNetworkInfo();
@@ -125,6 +126,6 @@ public class AssignationAdapter extends RecyclerView.Adapter<AssignationAdapter.
             }
 
             return false;
-        }
+        }*/
     }
 }

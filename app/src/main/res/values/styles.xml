@@ -10,8 +10,8 @@
 
     <style name="AppThemeOffline" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#c1c1c1</item>
-        <item name="colorPrimaryDark">#c1c1c1</item>
+        <item name="colorPrimary">#ffc1c1c1</item>
+        <item name="colorPrimaryDark">#ffc1c1c1</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 

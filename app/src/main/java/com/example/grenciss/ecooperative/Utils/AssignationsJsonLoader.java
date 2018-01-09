@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.grenciss.ecooperative.Adapters.Assignation;
 import com.example.grenciss.ecooperative.Adapters.AssignationAdapter;
 import com.example.grenciss.ecooperative.Adapters.AssignationErrorAdapter;
+import com.example.grenciss.ecooperative.Adapters.LoadingAdapter;
 import com.example.grenciss.ecooperative.HttpHandler;
 import com.example.grenciss.ecooperative.R;
 
@@ -49,7 +50,8 @@ public class AssignationsJsonLoader extends AsyncTask<Void, Integer, Void> {
     protected void onPreExecute() {
         super.onPreExecute();
         Toast.makeText(this.context,"Téléchargement de données",Toast.LENGTH_SHORT).show();
-
+        LoadingAdapter loadingAdapter = new LoadingAdapter(this.context);
+        this.recyclerView.setAdapter(loadingAdapter);
     }
 
     @Override
@@ -184,7 +186,6 @@ public class AssignationsJsonLoader extends AsyncTask<Void, Integer, Void> {
 
                 this.assignations.add(assignation);
 
-                this.context.setTheme(R.style.AppTheme_NoActionBar_Offline);
             }
         } catch (JSONException e) {
             Log.e(TAG, "Json parsing error: " + e.getMessage());

@@ -1,5 +1,6 @@
 package com.example.grenciss.ecooperative;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,7 +16,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.grenciss.ecooperative.Adapters.Assignation;
+import com.example.grenciss.ecooperative.Adapters.AssignationAdapter;
 import com.example.grenciss.ecooperative.Utils.AssignationsJsonLoader;
+import com.example.grenciss.ecooperative.Utils.GlobalHelper;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,6 +45,11 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setLayoutManager(linearLayoutManager);
 
         new AssignationsJsonLoader(this,recyclerView).execute();
+
+        if (!new GlobalHelper(this).isConnected())
+        {
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.offline)));
+        }
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
