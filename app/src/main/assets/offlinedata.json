@@ -1,0 +1,96 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "created_at": "2018-01-08 04:21:15",
+      "deleted_at": null,
+      "planteurs_id": {
+        "id": 1,
+        "nom": "Agbado Same",
+        "localite": "Divo",
+        "tel": "02684295",
+        "created_at": "2018-01-08 04:20:38",
+        "updated_at": "2018-01-08 04:20:38",
+        "deleted_at": null
+      },
+      "acheteurs_id": {
+        "id": 1,
+        "nom": "Yves Thibault",
+        "tel": "+33 (0)1 53 90 91 47",
+        "email": "lemoine.ines@sfr.fr",
+        "created_at": "2018-01-08 04:20:37",
+        "updated_at": "2018-01-08 04:20:37",
+        "deleted_at": null
+      }
+    },
+    {
+      "id": 2,
+      "created_at": "2018-01-08 04:21:21",
+      "deleted_at": null,
+      "planteurs_id": {
+        "id": 6,
+        "nom": "Alexandria Diallo",
+        "localite": "Weber",
+        "tel": "04625232",
+        "created_at": "2018-01-08 04:20:38",
+        "updated_at": "2018-01-08 04:20:38",
+        "deleted_at": null
+      },
+      "acheteurs_id": {
+        "id": 6,
+        "nom": "Guy de la Poulain",
+        "tel": "03412118",
+        "email": "charlotte.rodriguez@lesage.com",
+        "created_at": "2018-01-08 04:20:38",
+        "updated_at": "2018-01-08 04:20:38",
+        "deleted_at": null
+      }
+    },
+    {
+      "id": 3,
+      "created_at": "2018-01-08 04:21:29",
+      "deleted_at": null,
+      "planteurs_id": {
+        "id": 12,
+        "nom": "Grégoire Morvan",
+        "localite": "Maury",
+        "tel": "01909625",
+        "created_at": "2018-01-08 04:20:39",
+        "updated_at": "2018-01-08 04:20:39",
+        "deleted_at": null
+      },
+      "acheteurs_id": {
+        "id": 7,
+        "nom": "Dominique Verdier",
+        "tel": "07829942",
+        "email": "michele.roussel@tiscali.fr",
+        "created_at": "2018-01-08 04:20:38",
+        "updated_at": "2018-01-08 04:20:38",
+        "deleted_at": null
+      }
+    },
+    {
+      "id": 4,
+      "created_at": "2018-01-08 04:21:38",
+      "deleted_at": null,
+      "planteurs_id": {
+        "id": 12,
+        "nom": "Grégoire Morvan",
+        "localite": "Maury",
+        "tel": "01909645",
+        "created_at": "2018-01-08 04:20:39",
+        "updated_at": "2018-01-08 04:20:39",
+        "deleted_at": null
+      },
+      "acheteurs_id": {
+        "id": 1,
+        "nom": "Yves Thibault",
+        "tel": "+33 (0)1 53 90 91 47",
+        "email": "lemoine.ines@sfr.fr",
+        "created_at": "2018-01-08 04:20:37",
+        "updated_at": "2018-01-08 04:20:37",
+        "deleted_at": null
+      }
+    }
+  ]
+}

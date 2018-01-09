@@ -3,6 +3,8 @@ package com.example.grenciss.ecooperative.Adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,16 +83,48 @@ public class AssignationAdapter extends RecyclerView.Adapter<AssignationAdapter.
                 }
             });
 
-            btnBuy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int id = ids.get(getAdapterPosition());
-                    Intent I = new Intent(AssignationAdapter.this.context, AcheterActivity.class);
-                    I.putExtra("assignation_id",id);
-                    I.putExtra("planteur_nom", assignationList.get(getAdapterPosition()).nom);
-                    AssignationAdapter.this.context.startActivity(I);
+            if (this.isConnected())
+            {
+                btnBuy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int id = ids.get(getAdapterPosition());
+                        Intent I = new Intent(AssignationAdapter.this.context, AcheterActivity.class);
+                        I.putExtra("assignation_id",id);
+                        I.putExtra("planteur_nom", assignationList.get(getAdapterPosition()).nom);
+                        AssignationAdapter.this.context.startActivity(I);
+                    }
+                });
+            }
+            else
+            {
+                btnBuy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(context, "Aucune connexion internet", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }
+
+        public boolean isConnected()
+        {
+            ConnectivityManager check = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo[] info = check.getAllNetworkInfo();
+
+            for (int i = 0; i<info.length; i++)
+            {
+                if (info[i].getState() == NetworkInfo.State.CONNECTED)
+                {
+                    return true;
                 }
-            });
+                else
+                {
+//                    Toast.makeText(context, "Aucune connexion internet", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            return false;
         }
     }
 }
