@@ -6,4 +6,5 @@
     <color name="colorAccent">#ff4081</color>
     <color name="cardMain">#e64d4d</color>
     <color name="offline">#ffc1c1c1</color>
+    <color name="online">#3f51b5</color>
 </resources>

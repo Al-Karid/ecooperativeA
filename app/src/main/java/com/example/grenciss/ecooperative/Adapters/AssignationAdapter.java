@@ -58,7 +58,6 @@ public class AssignationAdapter extends RecyclerView.Adapter<AssignationAdapter.
     }
 
     public class AssignationViewHolder extends RecyclerView.ViewHolder {
-
         protected TextView txtName;
         protected TextView txtTel;
         protected TextView txtLocation;
@@ -92,6 +91,7 @@ public class AssignationAdapter extends RecyclerView.Adapter<AssignationAdapter.
                         int id = ids.get(getAdapterPosition());
                         Intent I = new Intent(AssignationAdapter.this.context, AcheterActivity.class);
                         I.putExtra("assignation_id",id);
+                        I.putExtra("planteur_id", assignationList.get(getAdapterPosition()).idp);
                         I.putExtra("planteur_nom", assignationList.get(getAdapterPosition()).nom);
                         AssignationAdapter.this.context.startActivity(I);
                     }

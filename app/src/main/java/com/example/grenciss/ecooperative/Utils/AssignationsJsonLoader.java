@@ -16,6 +16,7 @@ import com.example.grenciss.ecooperative.Adapters.AssignationAdapter;
 import com.example.grenciss.ecooperative.Adapters.AssignationErrorAdapter;
 import com.example.grenciss.ecooperative.Adapters.LoadingAdapter;
 import com.example.grenciss.ecooperative.HttpHandler;
+import com.example.grenciss.ecooperative.MainActivity;
 import com.example.grenciss.ecooperative.R;
 
 import org.json.JSONArray;
@@ -38,7 +39,8 @@ public class AssignationsJsonLoader extends AsyncTask<Void, Integer, Void> {
     protected RecyclerView recyclerView;
     protected List<Assignation> assignations = new ArrayList<>();
     protected static String TAG = "Runtime error";
-    protected int code;
+    public int code;
+    public int DataError;
 
     public AssignationsJsonLoader(Context context, RecyclerView recyclerView)
     {
@@ -78,6 +80,7 @@ public class AssignationsJsonLoader extends AsyncTask<Void, Integer, Void> {
                     assignation.id = Integer.parseInt(c.getString("id"));
 
                         JSONObject p = c.getJSONObject("planteurs_id");
+                        assignation.idp = c.getInt("id");
                         assignation.nom = p.getString("nom");
                         assignation.tel = p.getString("tel");
                         assignation.localite = p.getString("localite");
@@ -89,6 +92,8 @@ public class AssignationsJsonLoader extends AsyncTask<Void, Integer, Void> {
                     Toast.makeText(AssignationsJsonLoader.this.context,
                                 "Json parsing error: " + e.getMessage(),
                                 Toast.LENGTH_LONG).show();
+                    this.DataError = 1;
+                    publishProgress(1);
 
             }
 

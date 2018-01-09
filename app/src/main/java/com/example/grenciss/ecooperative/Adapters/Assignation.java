@@ -6,6 +6,7 @@ package com.example.grenciss.ecooperative.Adapters;
 
 public class Assignation {
     public int id;
+    public int idp;
     public String nom;
     public String localite;
     public String tel;

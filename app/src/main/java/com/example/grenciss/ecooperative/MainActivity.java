@@ -46,10 +46,7 @@ public class MainActivity extends AppCompatActivity
 
         new AssignationsJsonLoader(this,recyclerView).execute();
 
-        if (!new GlobalHelper(this).isConnected())
-        {
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.offline)));
-        }
+        this.changeAppBar();
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +96,7 @@ public class MainActivity extends AppCompatActivity
             return true;
         }else if (id == R.id.action_reload){
             new AssignationsJsonLoader(this, this.recyclerView).execute();
+            this.changeAppBar();
         }
 
         return super.onOptionsItemSelected(item);
@@ -117,5 +115,21 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void changeAppBar()
+    {
+        if (!new GlobalHelper(this).isConnected())
+        {
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.offline)));
+        }
+        else if(new AssignationsJsonLoader(this,this.recyclerView).DataError == 1)
+        {
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.offline)));
+        }
+        else
+        {
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.online)));
+        }
     }
 }
