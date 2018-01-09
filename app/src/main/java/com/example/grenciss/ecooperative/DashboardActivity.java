@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 
@@ -32,6 +34,13 @@ public class DashboardActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         new AssignationsJsonLoader(this,recyclerView).execute();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbarmenu, menu);
+        return true;
     }
 
     public List<Assignation> getAssignations(int n)

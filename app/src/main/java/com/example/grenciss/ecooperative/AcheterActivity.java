@@ -19,6 +19,7 @@ public class AcheterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_acheter);
         getSupportActionBar().setElevation(0);
         getSupportActionBar().setTitle("Acheter");
+        Bundle bundle = getIntent().getExtras();
 
 //        AutoCompleteTextView P = (AutoCompleteTextView)findViewById(R.id.fournisseur);
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.select_dialog_item, names);
@@ -32,8 +33,11 @@ public class AcheterActivity extends AppCompatActivity {
 
         final EditText weight = (EditText) findViewById(R.id.poids);
         final TextView price = (TextView)findViewById(R.id.prix);
+        TextView PlanteurNom = (TextView)findViewById(R.id.txtNom);
         double s = Double.parseDouble(weight.getHint().toString()) * 375;
         price.setText(String.valueOf(s));
+        int id = bundle.getInt("assignation_id");
+        PlanteurNom.setText(bundle.getString("planteur_nom"));
 
         weight.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override

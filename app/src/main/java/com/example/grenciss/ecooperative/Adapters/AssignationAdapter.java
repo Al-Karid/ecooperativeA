@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.grenciss.ecooperative.AcheterActivity;
 import com.example.grenciss.ecooperative.R;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ import java.util.List;
 
 public class AssignationAdapter extends RecyclerView.Adapter<AssignationAdapter.AssignationViewHolder> {
     private List<Assignation> assignationList;
+    private HashMap<Integer,Integer>ids = new HashMap<>();
     private Context context;
 
     public AssignationAdapter(Context context, List<Assignation> assignationList)
@@ -39,6 +41,7 @@ public class AssignationAdapter extends RecyclerView.Adapter<AssignationAdapter.
     @Override
     public void onBindViewHolder(AssignationViewHolder holder, int position) {
         Assignation assignation = assignationList.get(position);
+        ids.put(position,assignation.id);
         holder.txtName.setText(assignation.nom);
         holder.txtTel.setText(assignation.tel);
         holder.txtLocation.setText(assignation.localite);
@@ -64,21 +67,27 @@ public class AssignationAdapter extends RecyclerView.Adapter<AssignationAdapter.
             txtName = (TextView)itemView.findViewById(R.id.txtName);
             txtTel = (TextView)itemView.findViewById(R.id.txtTel);
             txtLocation = (TextView)itemView.findViewById(R.id.txtLocation);
-            btnCall = (Button)itemView.findViewById(R.id.btnCall);
+            btnCall = (Button)itemView.findViewById(R.id.btnReload);
             btnBuy = (Button)itemView.findViewById(R.id.btnBuy);
 
             btnCall.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("ResourceType")
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(view.getContext(),String.valueOf(assignationList.get(getAdapterPosition()).tel),Toast.LENGTH_SHORT).show();
+                    int id = ids.get(getAdapterPosition());
+                    String nom = assignationList.get(getAdapterPosition()).nom;
+//                    Toast.makeText(view.getContext(),String.valueOf(assignationList.get(getAdapterPosition()).tel),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(),String.valueOf(nom),Toast.LENGTH_SHORT).show();
                 }
             });
 
             btnBuy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    int id = ids.get(getAdapterPosition());
                     Intent I = new Intent(AssignationAdapter.this.context, AcheterActivity.class);
+                    I.putExtra("assignation_id",id);
+                    I.putExtra("planteur_nom", assignationList.get(getAdapterPosition()).nom);
                     AssignationAdapter.this.context.startActivity(I);
                 }
             });

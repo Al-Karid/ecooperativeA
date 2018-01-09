@@ -4,34 +4,31 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ListAdapter;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.example.grenciss.ecooperative.Adapters.Assignation;
 import com.example.grenciss.ecooperative.Adapters.AssignationAdapter;
+import com.example.grenciss.ecooperative.Adapters.AssignationErrorAdapter;
 import com.example.grenciss.ecooperative.HttpHandler;
-import com.example.grenciss.ecooperative.ListeDesProduitsActivity;
-import com.example.grenciss.ecooperative.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by grenciss on 1/8/18.
  */
 
-public class AssignationsJsonLoader extends AsyncTask<Void, Void, Void> {
+public class AssignationsJsonLoader extends AsyncTask<Void, Integer, Void> {
 
     protected Context context;
     protected RecyclerView recyclerView;
     protected List<Assignation> assignations = new ArrayList<>();
     protected static String TAG = "Runtime error";
+    protected int code;
 
     public AssignationsJsonLoader(Context context, RecyclerView recyclerView)
     {
@@ -42,15 +39,15 @@ public class AssignationsJsonLoader extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        Toast.makeText(this.context,"Json Data is downloading",Toast.LENGTH_LONG).show();
+        Toast.makeText(this.context,"Téléchargement de données",Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
-    protected Void doInBackground(Void... arg0) {
+    protected Void doInBackground(Void... voids) {
         HttpHandler sh = new HttpHandler();
         // Making a request to url and getting response
-        String url = "http://9118fc59.ngrok.io/api/assignations";
+        String url = "http://d018d46e.ngrok.io/api/assignations";
         String jsonStr = sh.makeServiceCall(url);
 
 //        Log.e(TAG, "Response from url: " + jsonStr);
@@ -86,9 +83,7 @@ public class AssignationsJsonLoader extends AsyncTask<Void, Void, Void> {
 
         } else {
             Log.e(TAG, "Couldn't get json from server.");
-                Toast.makeText(AssignationsJsonLoader.this.context,
-                            "Couldn't get json from server. Check LogCat for possible errors!",
-                            Toast.LENGTH_LONG).show();
+            publishProgress(1);
 
         }
 
@@ -96,9 +91,32 @@ public class AssignationsJsonLoader extends AsyncTask<Void, Void, Void> {
     }
 
     @Override
+    protected void onProgressUpdate(Integer... values) {
+//        super.onProgressUpdate(values);
+        if (values[0]==0)
+        {
+            this.code  = 0;
+        }
+        else
+        {
+            this.code = values[0];
+        }
+    }
+
+    @Override
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
-        AssignationAdapter assignationAdapter = new AssignationAdapter(this.context,this.assignations);
-        this.recyclerView.setAdapter(assignationAdapter);
+
+        if (this.code != 0)
+        {
+            this.code=1;
+            AssignationErrorAdapter assignationErrorAdapter = new AssignationErrorAdapter(this.context, this.recyclerView);
+            this.recyclerView.setAdapter(assignationErrorAdapter);
+        }
+        else
+        {
+            AssignationAdapter assignationAdapter = new AssignationAdapter(this.context,this.assignations);
+            this.recyclerView.setAdapter(assignationAdapter);
+        }
     }
 }
