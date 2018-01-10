@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity
         {
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.offline)));
         }
-        else if(new AssignationsJsonLoader(this,this.recyclerView).DataError == 1)
+        else if(new AssignationsJsonLoader(this,this.recyclerView).DataError)
         {
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.offline)));
         }

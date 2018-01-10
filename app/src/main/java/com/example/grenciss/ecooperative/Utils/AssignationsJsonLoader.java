@@ -15,6 +15,8 @@ import com.example.grenciss.ecooperative.Adapters.Assignation;
 import com.example.grenciss.ecooperative.Adapters.AssignationAdapter;
 import com.example.grenciss.ecooperative.Adapters.AssignationErrorAdapter;
 import com.example.grenciss.ecooperative.Adapters.LoadingAdapter;
+import com.example.grenciss.ecooperative.Adapters.NetError;
+import com.example.grenciss.ecooperative.Binders.MultiListAdapter;
 import com.example.grenciss.ecooperative.HttpHandler;
 import com.example.grenciss.ecooperative.MainActivity;
 import com.example.grenciss.ecooperative.R;
@@ -40,7 +42,7 @@ public class AssignationsJsonLoader extends AsyncTask<Void, Integer, Void> {
     protected List<Assignation> assignations = new ArrayList<>();
     protected static String TAG = "Runtime error";
     public int code;
-    public int DataError;
+    public boolean DataError;
 
     public AssignationsJsonLoader(Context context, RecyclerView recyclerView)
     {
@@ -60,7 +62,7 @@ public class AssignationsJsonLoader extends AsyncTask<Void, Integer, Void> {
     protected Void doInBackground(Void... voids) {
         HttpHandler sh = new HttpHandler();
         // Making a request to url and getting response
-        String url = "http://d018d46e.ngrok.io/api/assignations";
+        String url = "http://0167006d.ngrok.io/api/assignations";
         String jsonStr = sh.makeServiceCall(url);
 
 //        Log.e(TAG, "Response from url: " + jsonStr);
@@ -92,7 +94,7 @@ public class AssignationsJsonLoader extends AsyncTask<Void, Integer, Void> {
                     Toast.makeText(AssignationsJsonLoader.this.context,
                                 "Json parsing error: " + e.getMessage(),
                                 Toast.LENGTH_LONG).show();
-                    this.DataError = 1;
+//                    new GlobalHelper(this.context).dataError = true;
                     publishProgress(1);
 
             }
@@ -128,11 +130,20 @@ public class AssignationsJsonLoader extends AsyncTask<Void, Integer, Void> {
             this.code=1;
             this.getOfflineData();
 
-            AssignationErrorAdapter assignationErrorAdapter = new AssignationErrorAdapter(this.context, this.recyclerView);
-            this.recyclerView.setAdapter(assignationErrorAdapter);
+//            AssignationErrorAdapter assignationErrorAdapter = new AssignationErrorAdapter(this.context, this.recyclerView);
+//            this.recyclerView.setAdapter(assignationErrorAdapter);
 
-            AssignationAdapter assignationAdapter = new AssignationAdapter(this.context,this.assignations);
-            this.recyclerView.setAdapter(assignationAdapter);
+            NetError error = new NetError();
+            error.nom = "Oups!!";
+            error.tel = "Problème de connexion au serveur";
+            error.localite = "Veuillez vérifier votre connexion";
+            MultiListAdapter multiListAdapter = new MultiListAdapter(this.context);
+            multiListAdapter.addError(error);
+            multiListAdapter.addAssignation(this.assignations);
+            this.recyclerView.setAdapter(multiListAdapter);
+
+//            AssignationAdapter assignationAdapter = new AssignationAdapter(this.context,this.assignations);
+//            this.recyclerView.setAdapter(assignationAdapter);
 
             Notification.Builder builder = new Notification.Builder(this.context);
             builder.setSmallIcon(R.drawable.ic_cloud_off_black_24dp);

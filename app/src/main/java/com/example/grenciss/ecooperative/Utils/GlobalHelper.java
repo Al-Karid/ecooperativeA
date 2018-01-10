@@ -10,6 +10,8 @@ import android.net.NetworkInfo;
 
 public class GlobalHelper {
 
+    public boolean dataError;
+
     public Context context;
 
     public GlobalHelper(Context context){
